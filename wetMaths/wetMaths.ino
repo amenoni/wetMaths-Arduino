@@ -2,6 +2,7 @@
 #include <Mailbox.h>
 
 #define PAN_SERVO 9
+#define READY_LED 2
 
 //define global static variables
 #define STATE_WAITING 0
@@ -25,6 +26,7 @@ void setup() {
   Console.begin();  // Required to send messages to the console
   
   myservo.attach(PAN_SERVO);
+  pinMode(READY_LED,OUTPUT);
 }
 
 void loop() {
@@ -115,7 +117,7 @@ void shootAll(){
 void checkNewMessage(){
   String message;
 // Mailbox control
-delay(100);
+delay(200);
 if (Mailbox.messageAvailable()){
   Mailbox.readMessage(message);
   Console.println("Message = " +message);
@@ -135,6 +137,8 @@ if (Mailbox.messageAvailable()){
     shootPlayer(command.toInt());
   }else if(action == "shootAll"){
     shootAll();
+  }else if(action == "ready"){
+    digitalWrite(READY_LED, HIGH);
   }
   
 }
