@@ -1,6 +1,8 @@
 #include <Servo.h>
 #include <Mailbox.h>
 
+#define PAN_SERVO 9
+
 //define global static variables
 #define STATE_WAITING 0
 #define STATE_SWEEP 1
@@ -22,7 +24,7 @@ void setup() {
   Bridge.begin(); // Required to recibe messages from linino
   Console.begin();  // Required to send messages to the console
   
-  myservo.attach(9);
+  myservo.attach(PAN_SERVO);
 }
 
 void loop() {
@@ -113,6 +115,7 @@ void shootAll(){
 void checkNewMessage(){
   String message;
 // Mailbox control
+delay(100);
 if (Mailbox.messageAvailable()){
   Mailbox.readMessage(message);
   Console.println("Message = " +message);
