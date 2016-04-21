@@ -2,6 +2,7 @@
 #include <Mailbox.h>
 
 #define PAN_SERVO 9
+#define TRIGGER_SERVO 10
 #define READY_LED 2
 
 //define global static variables
@@ -17,7 +18,8 @@
 
 
 
-Servo myservo;
+Servo panservo;
+Servo triggerservo;
 int pos = 0;
 int currentState = 0;
  
@@ -25,7 +27,8 @@ void setup() {
   Bridge.begin(); // Required to recibe messages from linino
   Console.begin();  // Required to send messages to the console
   
-  myservo.attach(PAN_SERVO);
+  panservo.attach(PAN_SERVO);
+  triggerservo.attach(TRIGGER_SERVO);
   pinMode(READY_LED,OUTPUT);
 }
 
@@ -45,14 +48,14 @@ checkNewMessage();
 
 void sweep(){
     for(pos = 0; pos <= 180; pos +=1){
-      myservo.write(pos);
+      panservo.write(pos);
       delay(8);
     }
 
     checkNewMessage();
     
     for(pos = 180; pos >= 0; pos -= 1){
-      myservo.write(pos);
+      panservo.write(pos);
       delay(8);
     } 
 }
@@ -60,7 +63,9 @@ void sweep(){
 void shootPlayer(int playerNr){
   int start = 0;
   int finish = 0;
-  
+
+
+
   switch(playerNr){
     case 1:
       start = FIRST_PLAYER_POS_START;
@@ -77,19 +82,19 @@ void shootPlayer(int playerNr){
   }
 
   pos = start + (finish - start); //move the servo to the center position of the target range
-  myservo.write(pos); 
-  //HERE WE MUST TURN THE PUMP ON
+  panservo.write(pos); 
+  fire();
   for(int i = 0; i <= NUMBER_OF_SHOOTS; i++){
     for (pos = start; pos <= finish; pos++){
-      myservo.write(pos);
+      panservo.write(pos);
       delay(5);
     }
     for(pos = finish; pos >= start; pos--){
-      myservo.write(pos);
+      panservo.write(pos);
       delay(5);
     }  
   }
-  //HERE WE MUST TURN THE PUMP OFF
+  stopFire();
   currentState = STATE_SWEEP;
 
 }
@@ -98,19 +103,19 @@ void shootAll(){
   int start = FIRST_PLAYER_POS_START;
   int finish = THIRD_PLAYER_POS_END;
   
-  //HERE WE MUST TURN THE PUMP ON
+  fire();
    for(int i = 0; i <= 2; i++){ //we limit the ammount of shoot to 2 
     for (pos = start; pos <= finish; pos++){
-      myservo.write(pos);
+      panservo.write(pos);
       delay(5);
     }
     for(pos = finish; pos >= start; pos--){
-      myservo.write(pos);
+      panservo.write(pos);
       delay(5);
     }  
   }
     
-  //HERE WE MUST TURN THE PUMP OFF
+  stopFire();
   currentState = STATE_SWEEP;
 }
 
@@ -143,5 +148,14 @@ if (Mailbox.messageAvailable()){
   
 }
 
+}
+
+void fire(){
+  triggerservo.write(150);
+}
+
+void stopFire(){
+  triggerservo.write(70);
+  delay(2000);
 }
 
