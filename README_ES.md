@@ -15,3 +15,15 @@ Tambien encontramos el diseño de las piezas 3D imprimibles y el diseño de la p
 En este repositorio encontramos el codigo de la aplicación Android.
 
   https://github.com/amenoni/wetMaths-Android
+
+En este repositorio encontramos el codigo del servidor web que corre dentro del Linino del dispositivo Arduino Yun.
+
+https://github.com/amenoni/wetMaths-Linino/tree/master/wetmaths
+
+Diseño de la torreta que apunta a cada participante
+![alt tag](https://github.com/amenoni/wetMaths-Arduino/blob/master/wetMaths/HwDesigns/renders/TurretAssembly.jpg)
+Diseño del mecanismo que presiona la bomba del spray para disparar la espuma
+![alt tag](https://github.com/amenoni/wetMaths-Arduino/blob/master/wetMaths/HwDesigns/renders/triger_render.jpg)
+
+Hardware terminado (V1)
+![alt tag](https://github.com/amenoni/wetMaths-Arduino/blob/master/wetMaths/HwDesigns/renders/Foto%2026-4-16%2007%2011%2055.jpg)
