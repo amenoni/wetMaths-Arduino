@@ -17,8 +17,7 @@ The code for the Linux side server is in this repo:
 https://github.com/amenoni/wetMaths-Linino/tree/master/wetmaths
 
 
-In this repo you will find the arduino code thats controlls the servos that triggers the foam spray and the servo that controlls the turret
-that aims each player.
+In this repo you will find the arduino code that controls the servos that triggers the foam spray and the servo that controls the turret that aims each player.
 
 Also will find all 3D printable designs an the electronics diagrams
 
