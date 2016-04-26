@@ -27,3 +27,7 @@ Diseño del mecanismo que presiona la bomba del spray para disparar la espuma
 
 Hardware terminado (V1)
 ![alt tag](https://github.com/amenoni/wetMaths-Arduino/blob/master/wetMaths/HwDesigns/renders/Foto%2026-4-16%2007%2011%2055.jpg)
+
+This electronics diagram is made with [Fritzzing](http://fritzing.org/home/)
+The original file is in https://github.com/amenoni/wetMaths-Arduino/blob/master/wetMaths/HwDesigns/Electronics%20Diagram.fzz
+![alt tag](https://github.com/amenoni/wetMaths-Arduino/blob/master/wetMaths/HwDesigns/Electronics%20Diagram.jpg)
